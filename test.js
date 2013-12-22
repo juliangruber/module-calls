@@ -16,6 +16,13 @@ test('require', function(t) {
   t.end();
 });
 
+test('node', function(t) {
+  var source = 'require(\'name\');';
+  var calls = findCalls('name', source);
+  t.ok('object' == typeof calls[0].node);
+  t.end();
+});
+
 test('declaration require', function(t) {
   var source = 'var name = require(\'name\');';
   var calls = findCalls('name', source);
