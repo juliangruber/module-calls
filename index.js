@@ -41,11 +41,30 @@ function find(name, code) {
         debug('assignemt require: %s', code);
         calls.push({ code: code });
       } else if ('CallExpression' == node.parent.type) {
-        // require('name')(arg);
-        node.parent.arguments = shortenCallbacks(node.parent.arguments);
-        var code = codegen(node.parent.parent);
-        debug('require call: %s', code);
-        calls.push({ code: code });
+        if (node.parent.parent
+          && 'VariableDeclarator' == node.parent.parent.type
+        ) {
+          // var name = require('name')(arg);
+          names[node.parent.parent.id.name] = true;
+          node.parent.arguments = shortenCallbacks(node.parent.arguments);
+          var code = 'var ' + codegen(node.parent.parent) + ';';
+          debug('require call declaration: %s', code);
+          calls.push({ code: code });
+        } else if (node.parent.parent
+          && 'AssignmentExpression' == node.parent.parent.type) {
+            // name = require('name')(arg);
+            names[node.parent.parent.left.name] = true;
+            node.parent.arguments = shortenCallbacks(node.parent.arguments);
+            var code = codegen(node.parent.parent) + ';';
+            debug('require call assignment: %s', code);
+            calls.push({ code: code });
+        } else {
+          // require('name')(arg);
+          node.parent.arguments = shortenCallbacks(node.parent.arguments);
+          var code = codegen(node.parent.parent);
+          debug('require call: %s', code);
+          calls.push({ code: code });
+        }
       } else {
         // require('name');
         var code = codegen(node.parent);

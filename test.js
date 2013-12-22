@@ -111,6 +111,16 @@ test('multi assignment', function(t) {
   t.end();
 });
 
+test('require call declaration', function(t) {
+  var source = 'var name = require(\'name\')(arg); name(arg);';
+  var calls = findCalls('name', source);
+  t.deepEqual(calls, [
+    { code: 'var name = require(\'name\')(arg);' },
+    { code: 'name(arg);' }
+  ]);
+  t.end();
+});
+
 test('aliased', function(t) {
   var source = 'var alias = require(\'name\'); alias(arg);';
   var calls = findCalls('name', source);
