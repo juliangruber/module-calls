@@ -1,7 +1,7 @@
 {
   "name": "module-calls",
   "description": "Find all places a node module is used in a string of code",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "repository": {
     "type": "git",
     "url": "git://github.com/juliangruber/module-calls.git"
