@@ -108,6 +108,12 @@ function find(name, code) {
         debug('call: %s', code);
         calls.push({ code: code });
       }
+    } else if ('MemberExpression' == node.type && names[node.object.name]) {
+      // name.member(arg)
+      node.parent.arguments = shortenCallbacks(node.parent.arguments);
+      var code = codegen(node.parent.parent);
+      debug('member call: %s', code);
+      calls.push({ code: code });
     }
   });
   

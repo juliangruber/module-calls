@@ -169,3 +169,13 @@ test('callback in require call', function(t) {
   ]);
   t.end();
 });
+
+test('member call', function(t) {
+  var source = 'var name = require(\'name\'); name.member(arg);';
+  var calls = findCalls('name', source);
+  t.deepEqual(calls, [
+    { code: 'var name = require(\'name\');' },
+    { code: 'name.member(arg);' }
+  ]);
+  t.end();
+});
