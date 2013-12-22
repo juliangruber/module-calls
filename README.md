@@ -34,11 +34,24 @@ Usage of `astw`:
   { code: 'var walk = astw(code);' } ]
 
 Usage of `escodegen`:
-[ { code: 'require(\'escodegen\').generate' } ]
+[ { code: 'var codegen = require(\'escodegen\').generate;' },
+  { code: '\'var \' + codegen(node.parent)' },
+  { code: '\'var \' + codegen(node.parent.parent)' },
+  { code: 'codegen(node.parent.parent) + \';\'' },
+  { code: 'codegen(node.parent) + \';\'' },
+  { code: '\'var \' + codegen(node.parent.parent)' },
+  { code: 'codegen(node.parent.parent) + \';\'' },
+  { code: 'var code = codegen(node.parent.parent);' },
+  { code: 'var code = codegen(node.parent);' },
+  { code: '\'var \' + codegen(node.parent)' },
+  { code: 'codegen(node.parent) + \';\'' },
+  { code: 'var code = codegen(node.parent);' } ]
 
 Usage of `debug`:
 [ { code: 'var debug = require(\'debug\')(\'module-calls\');' },
   { code: 'debug(\'declaration require: %s\', code);' },
+  { code: 'debug(\'require member declaration: %s\', code);' },
+  { code: 'debug(\'require member assignment: %s\', code);' },
   { code: 'debug(\'assignemt require: %s\', code);' },
   { code: 'debug(\'require call declaration: %s\', code);' },
   { code: 'debug(\'require call assignment: %s\', code);' },
@@ -49,10 +62,7 @@ Usage of `debug`:
   { code: 'debug(\'call: %s\', code);' } ]
 ```
 
-This still needs improvement, e.g. here
-
-* Calls to `walk` should be tracked too
-* It should be `var generate = require("escodegen").generate` and `generate` should be tracked too
+This still needs improvement, e.g. here calls to `walk` should be tracked too.
 
 ## API
 
