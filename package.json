@@ -1,0 +1,35 @@
+{
+  "name": "module-calls",
+  "description": "Find all places a node module is used in a string of code",
+  "version": "0.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/juliangruber/module-calls.git"
+  },
+  "homepage": "https://github.com/juliangruber/module-calls",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape test.js"
+  },
+  "dependencies": {
+    "astw": "0.0.0",
+    "escodegen": "~1.0.1",
+    "debug": "~0.7.4"
+  },
+  "devDependencies": {
+    "tape": "~2.3.2"
+  },
+  "keywords": [
+    "ast",
+    "usage",
+    "analysis",
+    "npm",
+    "module"
+  ],
+  "author": {
+    "name": "Julian Gruber",
+    "email": "mail@juliangruber.com",
+    "url": "http://juliangruber.com"
+  },
+  "license": "MIT"
+}
