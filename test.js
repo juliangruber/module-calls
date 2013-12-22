@@ -179,3 +179,12 @@ test('member call', function(t) {
   ]);
   t.end();
 });
+
+test('toString member error', function(t) {
+  var source = 'var name = require(\'name\'); toString.call(arg);';
+  var calls = findCalls('name', source);
+  t.deepEqual(calls, [
+    { code: 'var name = require(\'name\');' }
+  ]);
+  t.end();
+});

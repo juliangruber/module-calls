@@ -26,6 +26,10 @@ function find(name, code) {
   var names = {};
   var walk = astw(code);
   
+  function hasName(n) {
+    return names.hasOwnProperty(n);
+  }
+  
   walk(function(node) {
     if (isRequire(node) && name == node.arguments[0].value) {
       if ('VariableDeclarator' == node.parent.type) {
@@ -89,7 +93,7 @@ function find(name, code) {
         debug('require: %s', code);
         calls.push({ code: code });
       }
-    } else if ('CallExpression' == node.type && names[node.callee.name]) {
+    } else if ('CallExpression' == node.type && hasName(node.callee.name)) {
       node.arguments = shortenCallbacks(node.arguments);
       
       if ('VariableDeclarator' == node.parent.type) {
@@ -108,7 +112,7 @@ function find(name, code) {
         debug('call: %s', code);
         calls.push({ code: code });
       }
-    } else if ('MemberExpression' == node.type && names[node.object.name]) {
+    } else if ('MemberExpression' == node.type && hasName(node.object.name)) {
       // name.member(arg)
       node.parent.arguments = shortenCallbacks(node.parent.arguments);
       var code = codegen(node.parent.parent);
