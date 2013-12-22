@@ -52,6 +52,26 @@ test('multi assignment require', function(t) {
   t.end();
 });
 
+test('require member declaration', function(t) {
+  var source = 'var foo = require(\'name\').foo; foo(arg);';
+  var calls = findCalls('name', source);
+  t.deepEqual(calls, [
+    { code: 'var foo = require(\'name\').foo;' },
+    { code: 'foo(arg);' }
+  ]);
+  t.end();
+});
+
+test('require member assignment', function(t) {
+  var source = 'foo = require(\'name\').foo; foo(arg);';
+  var calls = findCalls('name', source);
+  t.deepEqual(calls, [
+    { code: 'foo = require(\'name\').foo;' },
+    { code: 'foo(arg);' }
+  ]);
+  t.end();
+});
+
 test('function call', function(t) {
   var source = 'var name = require(\'name\'); name(arg);';
   var calls = findCalls('name', source);
