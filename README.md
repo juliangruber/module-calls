@@ -5,7 +5,7 @@ Find all places a node module is used in a string of code.
 
 ## Example
 
-Print usage info for the node modules this modules depends upon:
+Print usage info for the node modules this modules depends on:
 
 ```js
 var fs = require('fs');
