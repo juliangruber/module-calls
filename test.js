@@ -195,3 +195,12 @@ test('toString member error', function(t) {
   ]);
   t.end();
 });
+
+test('unix shebang', function(t) {
+  var source = '#!/usr/bin/env node\nvar name = require(\'name\');';
+  var calls = findCalls('name', source);
+  t.deepEqual(calls, [
+    { code: 'var name = require(\'name\');' }
+  ]);
+  t.end();
+});
