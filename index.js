@@ -6,6 +6,7 @@
 var astw = require('astw');
 var codegen = require('escodegen').generate;
 var debug = require('debug')('module-calls');
+var stripShebang = require('strip-shebang');
 
 /**
  * Expose `find`.
@@ -24,6 +25,7 @@ module.exports = find;
 function find(name, code) {
   var calls = [];
   var names = {};
+  code = stripShebang(code);
   var walk = astw(code);
   
   function hasName(n) {
