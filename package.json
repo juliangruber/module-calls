@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "astw": "2.0.0",
-    "debug": "~2.3.3",
+    "debug": "~2.5.1",
     "escodegen": "~1.8.1",
     "strip-shebang": "^1.0.2"
   },
