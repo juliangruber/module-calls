@@ -12,7 +12,7 @@
     "test": "tape test.js"
   },
   "dependencies": {
-    "astw": "2.0.0",
+    "astw": "2.1.0",
     "debug": "~2.3.3",
     "escodegen": "~1.8.1",
     "strip-shebang": "^1.0.2"
