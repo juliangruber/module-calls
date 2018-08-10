@@ -5,7 +5,7 @@ Find all places a node module is used in a string of code.
 
 [![build status](https://secure.travis-ci.org/juliangruber/module-calls.png)](http://travis-ci.org/juliangruber/module-calls)
 
-[![testling badge](https://ci.testling.com/juliangruber/module-calls.png)](https://ci.testling.com/juliangruber/module-calls)
+[![testling badge](https://ci.testling.com/juliangruber/module-calls.png)](https://ci.testling.com/juliangruber/module-calls) [![Greenkeeper badge](https://badges.greenkeeper.io/juliangruber/module-calls.svg)](https://greenkeeper.io/)
 
 ## Example
 
